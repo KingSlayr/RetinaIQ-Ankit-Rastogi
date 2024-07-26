@@ -16,6 +16,11 @@ You can view the live demo of the project hosted on [Vercel]([https://your-verce
 - **Responsive Design:** The UI adjusts responsively based on the number of variant columns.
 - **Local Storage Integration:** Saves and loads state and column configurations from local storage.
 
+## Image
+
+![image](https://github.com/user-attachments/assets/9d001803-e1cb-42cf-9203-0c8037fa9ed6)
+
+
 ## Setup and Installation
 
 1. **Clone the Repository:**
