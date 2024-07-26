@@ -7,6 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: true, // Optional, if you have issues with image optimization
   },
+  basePath: "/RetinaIQ-Ankit-Rastogi",
 };
 
 export default nextConfig;
