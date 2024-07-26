@@ -7,36 +7,51 @@ export type Item = {
 };
 
 export default function OurTable() {
-  const [data, setData] = useState<Item[]>(() =>
-    JSON.parse(localStorage.getItem("data_inital") || "[]")
-  );
-  const [columns, setColumns] = useState<string[]>(() =>
-    JSON.parse(
-      localStorage.getItem("columns_initial") ||
-        '["Product Filter", "Primary Variant"]'
-    )
-  );
-  const [columnCounter, setColumnCounter] = useState<number>(() => {
-    const storedValue = localStorage.getItem("columns_counter");
-    const parsedValue = storedValue ? parseInt(storedValue, 10) : 1;
-    return isNaN(parsedValue) ? 1 : parsedValue;
-  });
+  const [data, setData] = useState<Item[]>([]);
+  const [columns, setColumns] = useState<string[]>([
+    "Product Filter",
+    "Primary Variant",
+  ]);
+  const [columnCounter, setColumnCounter] = useState<number>(1);
+  const [initalseDone, setinitalseDone] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Fetch data from localStorage only on the client side
+      const storedData = localStorage.getItem("data_inital");
+      if (storedData) {
+        setData(JSON.parse(storedData));
+      }
+
+      const storedColumns = localStorage.getItem("columns_initial");
+      if (storedColumns) {
+        setColumns(JSON.parse(storedColumns));
+      }
+
+      const storedColumnCounter = localStorage.getItem("columns_counter");
+      const parsedColumnCounter = storedColumnCounter
+        ? parseInt(storedColumnCounter, 10)
+        : 1;
+      setColumnCounter(isNaN(parsedColumnCounter) ? 1 : parsedColumnCounter);
+      setinitalseDone(true);
+    }
+  }, []);
 
   //Storing important data in local storage to fetch after reloading
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (initalseDone) {
       localStorage.setItem("data_inital", JSON.stringify(data));
     }
   }, [data]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (initalseDone) {
       localStorage.setItem("columns_initial", JSON.stringify(columns));
     }
   }, [columns]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (initalseDone) {
       localStorage.setItem("columns_counter", JSON.stringify(columnCounter));
     }
   }, [columnCounter]);
