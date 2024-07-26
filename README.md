@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Developer Assignment: UI Implementation
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project implements a dynamic table UI as specified in the assignment. Built with Next.js and React, the application provides functionalities to manage state rows, variant columns, and supports drag-and-drop reordering. Local storage is used to persist state and variant information across sessions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can view the live demo of the project hosted on [Vercel]([https://your-vercel-deployment-url.com](https://retina-iq-ankit-rastogi.vercel.app/)).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Add/Delete State Rows:** Dynamically add and remove rows representing different states.
+- **Add/Delete Variant Columns:** Dynamically manage the columns representing various design variants.
+- **Row Reordering:** Drag-and-drop functionality to reorder rows.
+- **Responsive Design:** The UI adjusts responsively based on the number of variant columns.
+- **Local Storage Integration:** Saves and loads state and column configurations from local storage.
 
-## Learn More
+## Setup and Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/KingSlayr/RetinaIQ-Ankit-Rastogi.git
+   cd RetinaIQ-Ankit-Rastogi
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. **Install Dependencies:**
 
-## Deploy on Vercel
+   Ensure you have Node.js and npm installed. Run:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **Run the Development Server:**
+
+   Start the Next.js development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The application will be available at `http://localhost:3000`.
+
+4. **Build for Production:**
+
+   To build the project for production, run:
+
+   ```bash
+   npm run build
+   ```
+
+   And then start the production server:
+
+   ```bash
+   npm start
+   ```
+
+## Local Storage
+
+The application utilizes local storage to persist the state of the table and columns. Here's a summary of how local storage is used:
+
+- **Saving State:**
+  - When the state or columns change (e.g., rows are added or removed, columns are modified), these changes are saved to local storage using `localStorage.setItem()`.
+
+- **Loading State:**
+  - On initial load, the application retrieves the saved state and columns from local storage using `localStorage.getItem()`. If no saved data is found, default values are used.
+
+- **Clearing Storage:**
+  - You can clear the local storage by deleting the specific items or by manually clearing the browser's local storage.
+
+## Approach
+
+1. **Components:**
+   - `TableRow`: Represents a single row in the table.
+   - `TableCell`: Represents a cell in the table that can be edited.
+   - `DragTable`: The main table component that manages state rows and variant columns.
+
+2. **State Management:**
+   - State rows and variant columns are managed using React's `useState` hook.
+   - State is synchronized with local storage to ensure data persistence.
+
+3. **Styling:**
+   - Tailwind CSS is used for styling the components. Responsive design is handled using Tailwind's utility classes.
+
+4. **Drag-and-Drop:**
+   - Implemented using the `react-sortable-hoc` library for row reordering functionality.
