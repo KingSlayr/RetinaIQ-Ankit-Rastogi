@@ -5,9 +5,8 @@ const nextConfig = {
   },
   trailingSlash: true,
   images: {
-    unoptimized: true, // Optional, if you have issues with image optimization
+    unoptimized: true,
   },
-  basePath: "/RetinaIQ-Ankit-Rastogi",
   output: "export",
 };
 
