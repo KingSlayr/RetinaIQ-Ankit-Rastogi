@@ -24,15 +24,21 @@ export default function OurTable() {
 
   //Storing important data in local storage to fetch after reloading
   useEffect(() => {
-    localStorage.setItem("data_inital", JSON.stringify(data));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("data_inital", JSON.stringify(data));
+    }
   }, [data]);
 
   useEffect(() => {
-    localStorage.setItem("columns_initial", JSON.stringify(columns));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("columns_initial", JSON.stringify(columns));
+    }
   }, [columns]);
 
   useEffect(() => {
-    localStorage.setItem("columns_counter", JSON.stringify(columnCounter));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("columns_counter", JSON.stringify(columnCounter));
+    }
   }, [columnCounter]);
 
   const addItem = () => {
